@@ -51,50 +51,66 @@ class _HomePageState extends State<HomePage> {
         middle: Text("Sneakers Counterfeit Detector"),
         backgroundColor: CupertinoColors.white,
       ),
-      child: Container(
-        padding: const EdgeInsets.all(16.0),
-        color: CupertinoColors.extraLightBackgroundGray,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            CupertinoButton(
-              onPressed: null,
-              color: CupertinoColors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+      child: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          color: CupertinoColors.extraLightBackgroundGray,
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text("Model", style: TextStyle(color: CupertinoColors.inactiveGray)),
-                  Row(
+                  CupertinoButton(
+                    onPressed: null,
+                    color: CupertinoColors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text("Model", style: TextStyle(color: CupertinoColors.inactiveGray)),
+                        Row(
+                          children: [
+                            Text(
+                              _sneakersList[_selectedSneakerIndex], 
+                              style: const TextStyle(color: CupertinoColors.inactiveGray)
+                            ),
+                            const SizedBox(width: 16.0),
+                            const Icon(CupertinoIcons.chevron_right, size: 16, color: CupertinoColors.inactiveGray),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 32.0),
+                  const Text("Images"),
+                  const SizedBox(height: 8.0),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        _sneakersList[_selectedSneakerIndex], 
-                        style: const TextStyle(color: CupertinoColors.inactiveGray)
-                      ),
-                      const SizedBox(width: 16.0),
-                      const Icon(CupertinoIcons.chevron_right, size: 16, color: CupertinoColors.inactiveGray),
+                      CategoryInput(name: "Appearance", icon: CupertinoIcons.airplane),
+                      SizedBox(height: 8.0),
+                      CategoryInput(name: "Label", icon: CupertinoIcons.bell),
+                      SizedBox(height: 8.0),
+                      CategoryInput(name: "Back of Insole", icon: CupertinoIcons.alarm),
+                      SizedBox(height: 8.0),
+                      CategoryInput(name: "Insole Stitching", icon: CupertinoIcons.ant),
                     ],
                   )
                 ],
               ),
-            ),
-            const SizedBox(height: 32.0),
-            const Text("Images"),
-            const SizedBox(height: 8.0),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                CategoryInput(name: "Appearance", icon: CupertinoIcons.airplane),
-                SizedBox(height: 8.0),
-                CategoryInput(name: "Label", icon: CupertinoIcons.bell),
-                SizedBox(height: 8.0),
-                CategoryInput(name: "Back of Insole", icon: CupertinoIcons.alarm),
-                SizedBox(height: 8.0),
-                CategoryInput(name: "Insole Stitching", icon: CupertinoIcons.ant),
-              ],
-            )
-          ],
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: CupertinoButton.filled(
+                    onPressed: () {},
+                    child: const Text("Submit"), 
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
