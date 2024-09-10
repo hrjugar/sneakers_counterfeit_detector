@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sneakers_counterfeit_detector/widgets/category_input.dart';
 
 const List<String> _sneakersList = [
   "Jordan 1"
@@ -78,6 +79,21 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            const SizedBox(height: 32.0),
+            const Text("Images"),
+            const SizedBox(height: 8.0),
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CategoryInput(name: "Appearance", icon: CupertinoIcons.airplane),
+                SizedBox(height: 8.0),
+                CategoryInput(name: "Label", icon: CupertinoIcons.bell),
+                SizedBox(height: 8.0),
+                CategoryInput(name: "Back of Insole", icon: CupertinoIcons.alarm),
+                SizedBox(height: 8.0),
+                CategoryInput(name: "Insole Stitching", icon: CupertinoIcons.ant),
+              ],
+            )
           ],
         ),
       ),
