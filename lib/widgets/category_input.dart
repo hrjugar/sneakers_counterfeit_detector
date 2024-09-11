@@ -2,18 +2,20 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:sneakers_counterfeit_detector/constants.dart';
 import 'package:sneakers_counterfeit_detector/utils/text.dart';
 
 class CategoryInput extends StatefulWidget {
   final String name;
-  final IconData icon;
+  final String iconPath;
   final File? imageFile;
   final Function(File? newImageFile) setImageFile;
 
   const CategoryInput({ 
     super.key, 
     required this.name, 
-    required this.icon,
+    required this.iconPath,
     required this.imageFile,
     required this.setImageFile
   });
@@ -76,7 +78,12 @@ class _CategoryInputState extends State<CategoryInput> {
             child: Row(
               children: [
                 widget.imageFile == null ? (
-                  Icon(widget.icon, color: CupertinoColors.secondaryLabel, size: 32)
+                  SvgPicture.asset(
+                    widget.iconPath,
+                    width: 32,
+                    height: 32,
+                    colorFilter: const ColorFilter.mode(CupertinoColors.secondaryLabel, BlendMode.srcIn),
+                  )
                 ) : (
                   Image.file(widget.imageFile!, width: 32, height: 32)
                 ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:sneakers_counterfeit_detector/constants.dart';
 import 'package:sneakers_counterfeit_detector/pages/result.dart';
 import 'package:sneakers_counterfeit_detector/widgets/category_input.dart';
 
@@ -108,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       CategoryInput(
                         name: "Appearance", 
-                        icon: CupertinoIcons.airplane, 
+                        iconPath: shoeSvgPath, 
                         imageFile: _appearanceImageFile, 
                         setImageFile: (File? newImageFile) {
                           setState(() {
@@ -118,8 +119,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 8.0),
                       CategoryInput(
-                        name: "Label", 
-                        icon: CupertinoIcons.bell,
+                        name: "Inside Label", 
+                        iconPath: labelSvgPath,
                         imageFile: _labelImageFile,
                         setImageFile: (File? newImageFile) {
                           setState(() {
@@ -130,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 8.0),
                       CategoryInput(
                         name: "Back of Insole", 
-                        icon: CupertinoIcons.alarm,
+                        iconPath: insoleSvgPath,
                         imageFile: _insoleBackImageFile,
                         setImageFile: (File? newImageFile) {
                           setState(() {
@@ -141,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 8.0),
                       CategoryInput(
                         name: "Insole Stitching", 
-                        icon: CupertinoIcons.ant,
+                        iconPath: stitchSvgPath,
                         imageFile: _insoleStitchImageFile,
                         setImageFile: (File? newImageFile) {
                           setState(() {
