@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:sneakers_counterfeit_detector/pages/result.dart';
 import 'package:sneakers_counterfeit_detector/widgets/category_input.dart';
 
 const List<String> _sneakersList = [
@@ -14,6 +17,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedSneakerIndex = 0;
+  
+  File? _appearanceImageFile;
+  File? _labelImageFile;
+  File? _insoleBackImageFile;
+  File? _insoleStitchImageFile;
 
   void _showModelPicker() {
     showCupertinoModalPopup(
@@ -42,6 +50,10 @@ class _HomePageState extends State<HomePage> {
         ),                
       )
     );
+  }
+
+  void _submit() {
+    
   }
 
   @override
@@ -83,18 +95,60 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 32.0),
-                  const Text("Images"),
+                  const Text(
+                    "IMAGES", 
+                    style: TextStyle(
+                      color: CupertinoColors.secondaryLabel,
+                      fontSize: 13,
+                    )
+                  ),
                   const SizedBox(height: 8.0),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      CategoryInput(name: "Appearance", icon: CupertinoIcons.airplane),
-                      SizedBox(height: 8.0),
-                      CategoryInput(name: "Label", icon: CupertinoIcons.bell),
-                      SizedBox(height: 8.0),
-                      CategoryInput(name: "Back of Insole", icon: CupertinoIcons.alarm),
-                      SizedBox(height: 8.0),
-                      CategoryInput(name: "Insole Stitching", icon: CupertinoIcons.ant),
+                      CategoryInput(
+                        name: "Appearance", 
+                        icon: CupertinoIcons.airplane, 
+                        imageFile: _appearanceImageFile, 
+                        setImageFile: (File? newImageFile) {
+                          setState(() {
+                            _appearanceImageFile = newImageFile;
+                          });
+                        }
+                      ),
+                      const SizedBox(height: 8.0),
+                      CategoryInput(
+                        name: "Label", 
+                        icon: CupertinoIcons.bell,
+                        imageFile: _labelImageFile,
+                        setImageFile: (File? newImageFile) {
+                          setState(() {
+                            _labelImageFile = newImageFile;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 8.0),
+                      CategoryInput(
+                        name: "Back of Insole", 
+                        icon: CupertinoIcons.alarm,
+                        imageFile: _insoleBackImageFile,
+                        setImageFile: (File? newImageFile) {
+                          setState(() {
+                            _insoleBackImageFile = newImageFile;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 8.0),
+                      CategoryInput(
+                        name: "Insole Stitching", 
+                        icon: CupertinoIcons.ant,
+                        imageFile: _insoleStitchImageFile,
+                        setImageFile: (File? newImageFile) {
+                          setState(() {
+                            _insoleStitchImageFile = newImageFile;
+                          });
+                        },
+                      ),
                     ],
                   )
                 ],
@@ -104,7 +158,24 @@ class _HomePageState extends State<HomePage> {
                 child: SizedBox(
                   width: double.infinity,
                   child: CupertinoButton.filled(
-                    onPressed: () {},
+                    onPressed: (
+                      _appearanceImageFile == null ||
+                      _labelImageFile == null ||
+                      _insoleBackImageFile == null ||
+                      _insoleStitchImageFile == null
+                    ) ? null : () {
+                      Navigator.push(
+                        context, 
+                        CupertinoPageRoute(
+                          builder: (BuildContext context) => ResultPage(
+                              appearanceImageFile: _appearanceImageFile!, 
+                              labelImageFile: _labelImageFile!, 
+                              insoleBackImageFile: _insoleBackImageFile!, 
+                              insoleStitchingImageFile: _insoleStitchImageFile!
+                          )
+                        )
+                      );
+                    },
                     child: const Text("Submit"), 
                   ),
                 ),
