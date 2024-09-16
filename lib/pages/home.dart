@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   child: CupertinoButton.filled(
                     onPressed: (
-                      _appearanceImageFile == null ||
+                      _appearanceImageFile == null || 
                       _labelImageFile == null ||
                       _insoleBackImageFile == null ||
                       _insoleStitchImageFile == null
@@ -169,10 +169,10 @@ class _HomePageState extends State<HomePage> {
                         context, 
                         CupertinoPageRoute(
                           builder: (BuildContext context) => ResultPage(
-                              appearanceImageFile: _appearanceImageFile!, 
-                              labelImageFile: _labelImageFile!, 
-                              insoleBackImageFile: _insoleBackImageFile!, 
-                              insoleStitchingImageFile: _insoleStitchImageFile!
+                              appearanceImageFile: _appearanceImageFile!,
+                              labelImageFile: _labelImageFile!,
+                              insoleBackImageFile: _insoleBackImageFile!,
+                              insoleStitchImageFile: _insoleStitchImageFile!,
                           )
                         )
                       );
