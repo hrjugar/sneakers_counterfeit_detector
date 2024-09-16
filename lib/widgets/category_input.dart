@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sneakers_counterfeit_detector/constants.dart';
 import 'package:sneakers_counterfeit_detector/utils/text.dart';
 
@@ -26,13 +26,11 @@ class CategoryInput extends StatefulWidget {
 
 class _CategoryInputState extends State<CategoryInput> {
   void _selectCategoryImage() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image
-    );
+    final ImagePicker picker = ImagePicker();
+    final XFile? photo = await picker.pickImage(source: ImageSource.gallery);
 
-    if (result != null) {
-      File newFile = File(result.files.single.path!);
-      widget.setImageFile(newFile);
+    if (photo != null) {
+      widget.setImageFile(File(photo.path));
     }
   }
 
