@@ -61,7 +61,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        middle: Text("Sneakers Counterfeit Detector"),
+        middle: Text(
+          "Shoethenticator",
+          style: TextStyle(
+            color: CupertinoColors.label,
+          ),          
+        ),
         backgroundColor: CupertinoColors.white,
       ),
       child: SafeArea(
@@ -177,7 +182,10 @@ class _HomePageState extends State<HomePage> {
                         )
                       );
                     },
-                    child: const Text("Submit"), 
+                    child: const Text(
+                      "Submit", 
+                      style: TextStyle(color: CupertinoColors.white)
+                    ), 
                   ),
                 ),
               )

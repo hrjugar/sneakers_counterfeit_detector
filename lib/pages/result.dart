@@ -92,137 +92,201 @@ class _ResultPageState extends State<ResultPage> {
       child: CustomScrollView(
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
+            backgroundColor: CupertinoColors.white,
             leading: CupertinoNavigationBarBackButton(
               previousPageTitle: "Back",
               onPressed: () => Navigator.of(context).pop(),
             ),
-            largeTitle: const Text("Results"),
+            largeTitle: const Text(
+              "Results", 
+              style: TextStyle(
+                color: CupertinoColors.label,
+              ),
+            ),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
-            child: Padding(
+            child: Container(
+              color: CupertinoColors.extraLightBackgroundGray,
               padding: const EdgeInsets.all(24.0),
               child: loadingState == ResultLoadingState.finished ? (
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: CupertinoColors.systemGrey5),
-                        borderRadius: BorderRadius.circular(24.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: CupertinoColors.lightBackgroundGray.withOpacity(0.75),
-                            spreadRadius: 4,
-                            blurRadius: 6,
-                          )
-                        ],
-                      ),
-                      clipBehavior: Clip.hardEdge,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(24.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24.0,
-                                vertical: 36.0
-                              ),
-                              color: statusColor,
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    statusIconData,
-                                    size: 96,
-                                    color: CupertinoColors.white,
+                    Stack(
+                      alignment: Alignment.center,
+                      clipBehavior: Clip.none,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: CupertinoColors.systemGrey5),
+                            borderRadius: BorderRadius.circular(24.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: CupertinoColors.lightBackgroundGray.withOpacity(0.75),
+                                spreadRadius: 4,
+                                blurRadius: 6,
+                              )
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(24.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  color: CupertinoColors.white,
+                                  child: const Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 64,
+                                      bottom: 24,
+                                      left: 24,
+                                      right: 24
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "Shoethenticator", 
+                                          style: TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w700,
+                                          )
+                                        ),
+                                        Text(
+                                          "Certificate of Authenticity",
+                                          style: TextStyle(
+                                            color: CupertinoColors.secondaryLabel,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    statusText, 
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 24,
-                                      color: CupertinoColors.white
-                                    )
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.only(
+                                    top: 36.0,
+                                    bottom: 36.0,
+                                    left: 24.0,
+                                    right: 24.0,
                                   ),
-                                ],
-                              ),
+                                  color: statusColor,
+                                  child: Column(
+                                    children: [
+                                      Icon(
+                                        statusIconData,
+                                        size: 96,
+                                        color: CupertinoColors.white,
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        statusText, 
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 24,
+                                          color: CupertinoColors.white
+                                        )
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  color: CupertinoColors.white,
+                                  padding: const EdgeInsets.all(24),
+                                  child: Column(
+                                    children: [
+                                      const Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Model", style: TextStyle(fontWeight: FontWeight.w500)),
+                                          Text("Jordan 1")
+                                        ],
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text("Date Checked", style: TextStyle(fontWeight: FontWeight.w500)),
+                                          Text(nowString)
+                                        ],
+                                      ),
+                                      const SizedBox(height: 32),
+                                      Wrap(
+                                        direction: Axis.horizontal,
+                                        alignment: WrapAlignment.center,
+                                        spacing: 4,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(4),
+                                            child: Image.file(
+                                              widget.appearanceImageFile, 
+                                              width: 48, 
+                                              height: 48
+                                            ),
+                                          ),
+                                          const SizedBox(width: 4.0),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(4),
+                                            child: Image.file(
+                                              widget.labelImageFile, 
+                                              width: 48, 
+                                              height: 48
+                                            ),
+                                          ),
+                                          const SizedBox(width: 4.0),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(4),
+                                            child: Image.file(
+                                              widget.insoleBackImageFile, 
+                                              width: 48, 
+                                              height: 48
+                                            ),
+                                          ),
+                                          const SizedBox(width: 4.0),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(4),
+                                            child: Image.file(
+                                              widget.insoleStitchImageFile, 
+                                              width: 48, 
+                                              height: 48
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            Container(
-                              color: CupertinoColors.white,
-                              padding: const EdgeInsets.all(24),
-                              child: Column(
-                                children: [
-                                  const Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Model", style: TextStyle(fontWeight: FontWeight.w500)),
-                                      Text("Jordan 1")
-                                    ],
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text("Date Checked", style: TextStyle(fontWeight: FontWeight.w500)),
-                                      Text(nowString)
-                                    ],
-                                  ),
-                                  const SizedBox(height: 32),
-                                  Wrap(
-                                    direction: Axis.horizontal,
-                                    alignment: WrapAlignment.center,
-                                    spacing: 4,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: Image.file(
-                                          widget.appearanceImageFile, 
-                                          width: 32, 
-                                          height: 32
-                                        ),
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: Image.file(
-                                          widget.labelImageFile, 
-                                          width: 32, 
-                                          height: 32
-                                        ),
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: Image.file(
-                                          widget.insoleBackImageFile, 
-                                          width: 32, 
-                                          height: 32
-                                        ),
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: Image.file(
-                                          widget.insoleStitchImageFile, 
-                                          width: 32, 
-                                          height: 32
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                        Positioned(
+                          top: -56,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: CupertinoColors.white,
+                              border: Border.all(
+                                color: CupertinoColors.systemGrey5,
+                                width: 1
+                              ),
+                              borderRadius: BorderRadius.circular(16)
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                logoPath, 
+                                width: 96, 
+                                height: 96
+                              ),
+                            )
+                          )
+                        )                        
+                      ],
                     )
                   ],
                 )

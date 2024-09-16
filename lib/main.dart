@@ -25,6 +25,11 @@ class App extends StatelessWidget {
     return const CupertinoApp(
       title: 'Flutter Demo',
       home: HomePage(),
+      theme: CupertinoThemeData(
+        textTheme: CupertinoTextThemeData(
+          textStyle: TextStyle(color: CupertinoColors.black),
+        ),        
+      ),      
     );
   }
 }

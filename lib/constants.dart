@@ -1,6 +1,8 @@
 // FILE PATHS
 const assetsDirectoryPath = "assets";
 
+const logoPath = "$assetsDirectoryPath/logo.png";
+
 const svgDirectoryPath = "$assetsDirectoryPath/svg";
 const insoleSvgPath = "$svgDirectoryPath/insole.svg";
 const shoeSvgPath = "$svgDirectoryPath/shoe.svg";
